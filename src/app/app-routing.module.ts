@@ -3,8 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 
 const routes: Routes = [
+  // github remote
   {
     path: 'mfe1',
+    loadChildren: () =>
+        loadRemoteModule({
+            type: 'module',
+            remoteEntry: 'https://ktsangop.github.io/mfe1/remoteEntry.js',
+            exposedModule: './Module'
+        })
+        .then(m => m.MicroFrontend1Module)
+  },
+
+   //localhost remote
+   {
+    path: 'mfe1-local',
     loadChildren: () =>
         loadRemoteModule({
             type: 'module',
